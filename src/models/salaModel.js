@@ -34,4 +34,4 @@ let buscarMensagens = async (idsala, timestamp)=>{
 }
 
 
-module.exports = {listarSalas, buscarSala, atualizarMensagens}
+module.exports = {listarSalas, buscarSala, atualizarMensagens, buscarMensagens}

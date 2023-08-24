@@ -1,3 +1,4 @@
+const token = require("./util/token");
 var express = require("express");
 var app = express();
 app.use(express.urlencoded({extended : true}));
@@ -20,11 +21,7 @@ app.use('/', router.get('/sobre', (req, res, next)=>{
 }));
 
 
-app.use('/', router.get('/salas', async (req, res, next)=>{
-	const salaController = require("./controllers/salaController");
-	let resp= await salaController.get();
-	res.status(200).send(resp);
-}));
+
 
 
 app.use("/entrar",router.post("/entrar", async(req, res, next) =>{
