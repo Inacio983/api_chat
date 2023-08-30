@@ -4,8 +4,8 @@ let singleton;
 
 async function connect() {
 if (singleton) return singleton;
-
-const client = new MongoClient(process.env.DB_HOST);
+console.log(process.env.DB_HOST)
+const client = new MongoClient();
 await client.connect();
 
 singleton = client.db(process.env.DB_DATABASE);
