@@ -5,6 +5,11 @@ async function registrarUsuario(nick) {
 
 }
 
+async function deletarUsuario(id) {
+	return await db.deleteOne("usuarios",{"_id":id});
+
+}
+
 let buscarUsuario = async (idUser)=>{
     let user = await db.findOne("usuarios",idUser);
     return user;
@@ -14,4 +19,4 @@ let buscarUsuario = async (idUser)=>{
         return await db.updateOne("usuarios",user,{_id:user._id});
     }
 
-module.exports = {registrarUsuario,buscarUsuario,alterarUsuario}
+module.exports = {registrarUsuario,buscarUsuario,alterarUsuario,deletarUsuario}

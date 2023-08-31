@@ -10,3 +10,13 @@ exports.entrar=async(nick)=>{
 }
 
 }
+
+exports.sair=async(id)=>{
+	let resp = await usuarioModel.deletarUsuario(id);
+	if(resp.insertedId){
+		return {"idUser":resp.insertedId,
+				"token": await token.setToken(JSON.stringify(resp.insertedId).replace(/"/g, ''),nick),
+				"nick":nick}
+}
+
+}

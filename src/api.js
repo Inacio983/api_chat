@@ -29,6 +29,27 @@ app.use("/entrar",router.post("/entrar", async(req, res, next) =>{
 	res.status(200).send(resp);
 }));
 
+app.use("/sair/:token",router.get("/sair/:id", async (req, res, next) => {
+	//Apagar o registro no banco de dados MongoDB
+    //const artigo = await Artigo.deleteOne({_id: req.params.token}, (err) => {
+
+		const usuarioController = require("./controllers/usuarioController");
+		let resp = await usuarioController.sair(req.params._id);
+
+
+		//Retornar erro quando não conseguir apagar no banco de dados
+        if(err) return res.status(400).json({
+            error: true,
+            message: "Error: Artigo não foi apagado com sucesso!"
+        });
+
+		//Retornar mensagem de sucesso quando excluir o registro com sucesso no banco de dados
+        return res.json({
+            error: false,
+            message: "Artigo apagado com sucesso!"
+        });
+}));
+
 
 app.use("/salas",router.get("/salas", async (req, res, next) => {
 	if(await token.checkToken(req.headers.token,req.headers.iduser,req.headers.nick)
