@@ -21,7 +21,7 @@ return db.collection(collection).find().toArray();
 
 let findAll = async (collection, _id)=>{
 	const db = await connect();
-	return await db.collection(collection).remove(_id).toArray();
+	return await db.collection(collection).remove(_id);
 }
 
 let deleteOne = async (collection)=>{

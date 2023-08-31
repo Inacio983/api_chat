@@ -1,4 +1,5 @@
 var express = require("express");
+const token = require("./util/token");
 var app = express();
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -29,7 +30,7 @@ app.use("/entrar",router.post("/entrar", async(req, res, next) =>{
 	res.status(200).send(resp);
 }));
 
-app.use("/sair/:token",router.get("/sair/:id", async (req, res, next) => {
+app.use("/sair/:id",router.get("/sair/:id", async (req, res, next) => {
 	//Apagar o registro no banco de dados MongoDB
     //const artigo = await Artigo.deleteOne({_id: req.params.token}, (err) => {
 
