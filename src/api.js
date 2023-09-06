@@ -31,12 +31,12 @@ app.use("/entrar",router.post("/entrar", async(req, res, next) =>{
 	res.status(200).send(resp);
 }));
 
-app.use("/sair/:id",router.get("/sair/:id", async (req, res, next) => {
+app.use("/sair/:id",router.delete("/sair/:id", async (req, res, next) => {
 	//Apagar o registro no banco de dados MongoDB
     //const artigo = await Artigo.deleteOne({_id: req.params.token}, (err) => {
 
 		const usuarioController = require("./controllers/usuarioController");
-		let resp = await usuarioController.sair(req.params._id);
+		let resp = await usuarioController.sair(req.params.idUser);
 
 
 		//Retornar erro quando não conseguir apagar no banco de dados
@@ -65,9 +65,11 @@ app.use("/salas",router.get("/salas", async (req, res, next) => {
 
 
 app.use("sala/entrar", router.put("/sala/entrar", async (req, res)=>{
-	if(!token.checkToken(req.headers.token,req.headers.idUser,req.headers.nick))
+	console.log("api.js req: ",req);
+	if(!token.checkToken(req.headers.token,req.headers.idUser,req.headers.nick))//usar await no começo não resolveu
 	return false;
-	
+	console.log("api.js idsala: ",req.query.idsala);
+	console.log("api.js iduser: ",req.headers.idUser);
 	let resp= await salaController.entrar(req.headers.iduser,req.query.idsala);
 	res.status(200).send(resp);
 }));

@@ -20,12 +20,12 @@ return db.collection(collection).find().toArray();
 }
 */
 
-let findAll = async (collection, _id)=>{
+let deleteOne = async (collection, _id)=>{
 	const db = await connect();
 	return await db.collection(collection).remove(_id);
 }
 
-let deleteOne = async (collection)=>{
+let findAll = async (collection)=>{
 	const db = await connect();
 	return await db.collection(collection).find().toArray();
 }
@@ -38,6 +38,7 @@ async function insertOne(collection, objeto){
 let findOne = async (collection, _id)=>{
 	const db = await connect();
 	let obj = await db.collection(collection).find({"_id":new ObjectId(_id)}).toArray();
+	console.log("db findone: ",obj);
 	if(obj)
 	return obj[0];
 return false;
