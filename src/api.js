@@ -68,7 +68,7 @@ app.use("sala/entrar", router.put("/sala/entrar", async (req, res)=>{
 	console.log("api.js req: ",req);
 	if(!token.checkToken(req.headers.token,req.headers.idUser,req.headers.nick))//usar await no começo não resolveu
 	return false;
-	console.log("api.js idsala: ",req.query.idsala);
+	console.log("api.js idsala: ",req.query.idsala);//corrigir todas as letras maiúsculas, deixar igual ao postman
 	console.log("api.js iduser: ",req.headers.idUser);
 	let resp= await salaController.entrar(req.headers.iduser,req.query.idsala);
 	res.status(200).send(resp);
