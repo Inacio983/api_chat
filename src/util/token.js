@@ -19,8 +19,4 @@ const setToken = async (id,key) => {
 	return false;
 };
 
-module.exports = {
-    checktoken,
-    setToken,
-	
-};
+module.exports = {checktoken, setToken};
