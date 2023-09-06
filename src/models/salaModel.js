@@ -11,17 +11,8 @@ let listarSalas = async ()=>{
 	return salas;
 };
 
-/* usando versão abaixo parabuscar o erro
 let buscarSala = async (idsala)=>{
 	return await db.findOne("salas",idsala);
-}
-*/
-
-let buscarSala = async (idsala)=>{
-	console.log("model id da sala: ",idsala);
-	let sal = await db.findOne("salas",idsala);
-	console.log("model findone: ",sal);
-	return sal;
 }
 
 let atualizarMensagens=async (sala)=>{

@@ -4,7 +4,7 @@ let singleton;
 
 async function connect() {
 if (singleton) return singleton;
-console.log(process.env.DB_HOST)
+//console.log(process.env.DB_HOST)
 //usando diretamente o link e nome do banco de dados para evitar problemas no render//
 const client = new MongoClient("mongodb+srv://admin:lw6vwrUrr1XfUt68@cluster0.ge4ztbx.mongodb.net/?retryWrites=true&w=majority");
 await client.connect();
@@ -38,7 +38,6 @@ async function insertOne(collection, objeto){
 let findOne = async (collection, _id)=>{
 	const db = await connect();
 	let obj = await db.collection(collection).find({"_id":new ObjectId(_id)}).toArray();
-	console.log("db findone: ",obj);
 	if(obj)
 	return obj[0];
 return false;
@@ -46,8 +45,7 @@ return false;
 
 let updateOne= async (collection, object, param)=> {
 	const db = await connect();
-	let result=await db.collection(collection).updateOne(param, { $set: object}
-);
+	let result = await db.collection(collection).updateOne(param, { $set: object});
 	return result;
 }
 
